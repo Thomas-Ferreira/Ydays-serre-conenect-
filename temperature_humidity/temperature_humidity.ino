@@ -2,11 +2,12 @@
 
 dht DHT;
 
+/** Défintion du port du capteur **/
 #define DHT11_PIN 2
 
 void setup () {
-  Serial.begin(115200);
-  Serial.println("Démarrage Temperature & Humidity")
+  Serial.begin(9600);
+  Serial.println("Démarrage Temperature & Humidity...")
 }
 
 void loop {
