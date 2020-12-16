@@ -9,6 +9,7 @@ branchement de la photoresistance DATA GROUND VCC
 const int sensorPin = A0; // Pin connected to sensor
 
 int sensorVal; // Analog value from the sensor
+int outputVal; // Map value for sensorVal
 int lux; //Lux value
 bool isLight ;
 
@@ -19,6 +20,7 @@ void setup() {
 
 void loop(void) {
   sensorVal = analogRead(sensorPin);
+  outputVal =  map(sensorVal, 0, 1023, 0, 99);
   lux=sensorRawToPhys(sensorVal);
   
   /*Serial.print("Analog value = ");
@@ -27,9 +29,11 @@ void loop(void) {
   Serial.print(lux); // the analog reading
   Serial.println(" lumen"); // the analog reading*/
   
-  if (isShiny(sensorVal) == true) {
+  if (isShiny(outputVal) == true) {
+    Serial.println(outputVal);
     Serial.println("light on");
   } else {
+    Serial.println(outputVal);
     Serial.println("light off");
   }
   delay(1000);
@@ -46,7 +50,7 @@ int sensorRawToPhys(int raw){
 bool isShiny(int value){
   
   bool light;
-  if (value < 600){
+  if (value > 20){
     light = false ;
   }
   else{
