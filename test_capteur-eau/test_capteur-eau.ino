@@ -5,7 +5,7 @@
 
 void setup() {
   Serial.begin(9600);
-  
+
   pinMode(LEDAlert, OUTPUT);
   pinMode(LEDFull, OUTPUT);
   pinMode(waterSensor, INPUT);
@@ -14,19 +14,18 @@ void setup() {
 
 void loop() {
   // Détecte de l'eau
-  if( digitalRead(waterSensor) == LOW) {
-    
-    digitalWrite(LEDAlert,LOW);
+  if ( digitalRead(waterSensor) == LOW) {
+    digitalWrite(LEDAlert, LOW);
     Serial.println("Le réservoir contien de l'eau");
-    digitalWrite(LEDFull,HIGH);
+    digitalWrite(LEDFull, HIGH);
     delay(1000);
-  }else {
+  } else {
     // Ne détecte pas d'eau
-    digitalWrite(LEDFull,LOW);
+    digitalWrite(LEDFull, LOW);
     Serial.println("Le réservoir n'a plus d'eau");
-    digitalWrite(LEDAlert,HIGH);
+    digitalWrite(LEDAlert, HIGH);
     delay(1000);
-    digitalWrite(LEDAlert,LOW);
+    digitalWrite(LEDAlert, LOW);
     delay(1000);
   }
 }

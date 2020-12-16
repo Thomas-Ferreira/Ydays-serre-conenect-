@@ -1,6 +1,6 @@
 /****************
- 
-branchement de la photoresistance DATA GROUND VCC
+
+  branchement de la photoresistance DATA GROUND VCC
 
 ****************/
 #define VIN 3.3
@@ -21,14 +21,14 @@ void setup() {
 void loop(void) {
   sensorVal = analogRead(sensorPin);
   outputVal =  map(sensorVal, 0, 1023, 0, 99);
-  lux=sensorRawToPhys(sensorVal);
-  
+  lux = sensorRawToPhys(sensorVal);
+
   /*Serial.print("Analog value = ");
-  Serial.println(sensorVal); // the analog reading
-  Serial.print("= ");
-  Serial.print(lux); // the analog reading
-  Serial.println(" lumen"); // the analog reading*/
-  
+    Serial.println(sensorVal); // the analog reading
+    Serial.print("= ");
+    Serial.print(lux); // the analog reading
+    Serial.println(" lumen"); // the analog reading*/
+
   if (isShiny(outputVal) == true) {
     Serial.println(outputVal);
     Serial.println("light on");
@@ -39,22 +39,22 @@ void loop(void) {
   delay(1000);
 }
 
-int sensorRawToPhys(int raw){
+int sensorRawToPhys(int raw) {
   // Conversion rule
   float Vout = float(raw) * (VIN / float(1024));// Conversion analog to voltage
-  float RLDR = (R * (VIN - Vout))/Vout; // Conversion voltage to resistance
-  int phys=500/(RLDR/1000); // Conversion resitance to lumen
+  float RLDR = (R * (VIN - Vout)) / Vout; // Conversion voltage to resistance
+  int phys = 500 / (RLDR / 1000); // Conversion resitance to lumen
   return phys;
 }
 
-bool isShiny(int value){
-  
+bool isShiny(int value) {
+
   bool light;
-  if (value > 20){
+  if (value > 20) {
     light = false ;
   }
-  else{
-    light=true;
+  else {
+    light = true;
   }
   return light;
 
